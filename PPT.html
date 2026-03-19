@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samuel Zewude | Revenue Analysis Portfolio</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #3b82f6;
+            --secondary: #a855f7;
+            --accent: #10b981;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Presentation Container */
+        .ppt-container {
+            width: 90%;
+            max-width: 1000px;
+            height: 600px;
+            background: var(--card-bg);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 20%;
+            transition: width 0.4s ease;
+            border-radius: 24px 24px 0 0;
+        }
+
+        /* Slide Content */
+        .slide {
+            display: none;
+            padding: 60px;
+            flex-grow: 1;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Typography */
+        .slide-subtitle {
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .slide-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .highlight-text {
+            background: linear-gradient(90deg, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        /* Grid Layouts for Data */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-val {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        /* Navigation */
+        .nav-controls {
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slide-number {
+            color: var(--text-dim);
+            font-family: monospace;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.1);
+        }
+
+        .nav-btn.next {
+            background: var(--primary);
+            border: none;
+        }
+
+        /* List styling */
+        .tech-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .tech-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            color: var(--text-dim);
+        }
+
+        .tech-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .tech-list b { color: var(--text-main); }
+    </style>
+</head>
+<body>
+
+    <div class="ppt-container">
+        <div class="progress-bar" id="progress"></div>
+
+        <div class="slide active">
+            <p class="slide-subtitle">Project Showcase</p>
+            <h1 class="slide-title">Regional Revenue & <span class="highlight-text">Distribution Analysis</span></h1>
+            <p style="color: var(--text-dim); max-width: 600px; line-height: 1.6;">
+                A comprehensive Business Intelligence solution monitoring financial health and social support across Ethiopia's primary regions.
+            </p>
+            <div style="margin-top: 40px; display: flex; gap: 40px;">
+                <div>
+                    <p class="stat-label">Lead Developer</p>
+                    <p>Samuel Zewude</p>
+                </div>
+                <div>
+                    <p class="stat-label">Date</p>
+                    <p>March 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <p class="slide-subtitle">01. Architecture</p>
+            <h1 class="slide-title">Data Dictionary & Source</h1>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div class="stat-card" style="text-align: left;">
+                    <h3 style="color: var(--primary); margin-bottom: 10px;">Revenue Ledger</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-dim);">Detailed daily records of collections, aid distribution, and household counts.</p>
+                </div>
+                <div class="stat-card" style="text-align: left;">
+                    <h3 style="color: var(--secondary); margin-bottom: 10px;">Regional Profiles</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-dim);">Metadata lookup table defining town hierarchies and financial targets (e.g. Hawassa: 2M).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <p class="slide-subtitle">02. Performance Metrics</p>
+            <h1 class="slide-title">Financial Analysis</h1>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Total Revenue</span>
+                    <span class="stat-val" style="color: var(--accent);">8.97M</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Top Town</span>
+                    <span class="stat-val">Sodo</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Peak Time</span>
+                    <span class="stat-val">Q1 Spike</span>
+                </div>
+            </div>
+            <p style="margin-top: 30px; text-align: center; color: var(--text-dim);">
+                South Ethiopia represents the majority of the portfolio at ~5.46M total revenue.
+            </p>
+        </div>
+
+        <div class="slide">
+            <p class="slide-subtitle">03. Social Impact</p>
+            <h1 class="slide-title">Human Element Tracking</h1>
+            <div class="stat-card" style="margin-bottom: 20px; border-left: 4px solid var(--secondary);">
+                <p class="stat-label">Total Male Supported</p>
+                <p style="font-size: 2.5rem; font-weight: 800;">6,982 <span style="font-size: 1rem; color: var(--text-dim); font-weight: 400;">Individuals</span></p>
+            </div>
+            <p style="line-height: 1.6; color: var(--text-dim);">
+                <b>Correlation:</b> Direct positive link between high-revenue regions and female support distribution. Economic hubs effectively serve as the backbone for social aid.
+            </p>
+        </div>
+
+        <div class="slide">
+            <p class="slide-subtitle">04. Implementation</p>
+            <h1 class="slide-title">Technical Execution</h1>
+            <ul class="tech-list">
+                <li><b>Data Modeling:</b> Implemented a clean Star Schema for performance.</li>
+                <li><b>Interactivity:</b> Developed dynamic monthly slicers and drill-down visuals.</li>
+                <li><b>UX/UI:</b> Established a color-coded theme (Blues vs Purples) to separate finance from social aid.</li>
+            </ul>
+        </div>
+
+        <div class="nav-controls">
+            <div class="slide-number" id="slide-num">01 / 05</div>
+            <div class="btn-group">
+                <button class="nav-btn" onclick="changeSlide(-1)">❮</button>
+                <button class="nav-btn next" onclick="changeSlide(1)">❯</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const progress = document.getElementById('progress');
+        const slideNum = document.getElementById('slide-num');
+
+        function updateUI() {
+            slides.forEach((s, i) => {
+                s.classList.toggle('active', i === currentSlide);
+            });
+            
+            const percent = ((currentSlide + 1) / slides.length) * 100;
+            progress.style.width = percent + '%';
+            
+            slideNum.innerText = `0${currentSlide + 1} / 0${slides.length}`;
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            updateUI();
+        }
+
+        // Key support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "ArrowRight") changeSlide(1);
+            if (e.key === "ArrowLeft") changeSlide(-1);
+        });
+    </script>
+</body>
+</html>
